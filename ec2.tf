@@ -1,6 +1,6 @@
 resource "aws_instance" "this_is_ubuntu" {
 
-    ami = "ami-0e0e417dfa2028266 " 
+    ami = "ami-0e0e417dfa2028266" 
     disable_api_stop  = false 
     disable_api_termination = false  
     instance_type = "t2.micro" 

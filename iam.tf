@@ -1,5 +1,5 @@
-resource "aws_iam_user" "restlessgirl" {
-name = "restlessgirl"
+resource "aws_iam_user" "abc" {
+name = "abc"
 path = "/"
 
 tags = {
