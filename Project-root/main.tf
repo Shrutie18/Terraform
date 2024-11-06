@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-west-2"
+  region = "ap-south-1"
 }
 
 module "rds" {
@@ -11,7 +11,7 @@ module "rds" {
   allocated_storage     = 20
   engine                = "mysql"
   engine_version        = "8.0"
-  subnet_ids            = ["subnet-xxxxxx", "subnet-yyyyyy"] # Replace with your subnet IDs
+  subnet_ids            = ["subnet-011b4dccabc332923", "subnet-03944221db16b54cc"] # Replace with your subnet IDs
   vpc_security_group_ids = [aws_security_group.rds_sg.id]
   publicly_accessible   = false
 }
