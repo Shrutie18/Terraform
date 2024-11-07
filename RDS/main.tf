@@ -55,6 +55,9 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "public_a" {
+  vpc_id            = "vpc-03947b27961859338" # Replace with your VPC ID
+  cidr_block        = "172.31.0.0/16"
+  availability_zone = "ap-south-1a"
   vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.1.0/24"
   availability_zone = "us-east-1a"
