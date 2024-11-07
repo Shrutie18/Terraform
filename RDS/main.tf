@@ -48,8 +48,7 @@ resource "aws_db_subnet_group" "rds_subnet" {
 # Define subnets (example, replace with your actual VPC setup)
 resource "aws_subnet" "public_a" {
   vpc_id            = "vpc-03947b27961859338" # Replace with your VPC ID
-  cidr_block        = "172.31.0.0/16
-"
+  cidr_block        = "172.31.0.0/16"
   availability_zone = "ap-south-1a"
 }
 
