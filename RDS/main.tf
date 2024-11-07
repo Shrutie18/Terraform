@@ -47,13 +47,13 @@ resource "aws_db_subnet_group" "rds_subnet" {
 
 # Define subnets (example, replace with your actual VPC setup)
 resource "aws_subnet" "public_a" {
-  vpc_id            = "vpc-03947b27961859338" # Replace with your VPC ID
-  cidr_block        = "172.31.0.0/16"
-  availability_zone = "ap-south-1a"
+  vpc_id     = aws_vpc.main.id
+  cidr_block = "172.31.1.0/24"  # Adjusted to avoid conflict
+  availability_zone = "us-east-1a"
 }
 
 resource "aws_subnet" "public_b" {
-  vpc_id            = "vpc-050618b63fcea7429"
-  cidr_block        = "10.0.0.0/24"
-  availability_zone = "ap-south-1a"
+  vpc_id     = aws_vpc.main.id
+  cidr_block = "172.31.2.0/24"  # Adjusted to avoid conflict
+  availability_zone = "us-east-1b"
 }
