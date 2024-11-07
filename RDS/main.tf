@@ -24,9 +24,9 @@ resource "aws_db_instance" "oracle_db_instance" {
 
 # Output database endpoint
 output "db_endpoint" {
-  value = aws_db_instance.oracle_db.endpoint
+  value = aws_db_instance.oracle_db_instance.endpoint
 }
 
 output "db_arn" {
-  value = aws_db_instance.oracle_db.arn
+  value = aws_db_instance.oracle_db_instance.arn
 }
