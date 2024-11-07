@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 # Oracle RDS Instance
-resource "aws_db_instance" "oracle_db" {
+resource "aws_db_instance" "oracle_db_instance" {
   identifier              = var.db_identifier
   allocated_storage       = var.db_allocated_storage
   engine                  = "oracle-se2"       # Or "oracle-se1", "oracle-ee" depending on your needs
