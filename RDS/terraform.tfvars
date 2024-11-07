@@ -9,4 +9,4 @@ db_password           = "admin123"   # Set a secure password here
 db_parameter_group    = "default.oracle-se2-19"  # Adjust if needed
 publicly_accessible   = false
 backup_retention_period = 7
-multi_az              = false
+multi_az              = true
