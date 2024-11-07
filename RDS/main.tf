@@ -1,80 +1,32 @@
-# Specify the provider
 provider "aws" {
-  region = "us-east-1"  # Change this to your preferred region
+  profile = var.aws_profile
+  region  = var.aws_region
 }
 
-# Create a security group for the RDS instance
-resource "aws_security_group" "rds_sg" {
-  name        = "rds-oracle-sg"
-  description = "Allow inbound traffic for Oracle RDS"
+# Oracle RDS Instance
+resource "aws_db_instance" "oracle_db" {
+  identifier              = var.db_identifier
+  allocated_storage       = var.db_allocated_storage
+  engine                  = "oracle-se2"       # Or "oracle-se1", "oracle-ee" depending on your needs
+  instance_class          = var.db_instance_class
+  db_name                    = var.db_name
+  username                = var.db_username
+  password                = var.db_password
+  parameter_group_name    = var.db_parameter_group
+  license_model           = "license-included"  # or "bring-your-own-license"
+  skip_final_snapshot     = true
+  publicly_accessible     = var.publicly_accessible
+  backup_retention_period = var.backup_retention_period
 
-  ingress {
-    from_port   = 1521
-    to_port     = 1521
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]  # Change this to restrict access
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+  # Optional: Multi-AZ setup
+  multi_az = var.multi_az
 }
 
-# Create the RDS Oracle instance
-resource "aws_db_instance" "oracle_rds" {
-  allocated_storage    = 20                     # Storage in GB
-  engine               = "oracle-se2"           # Oracle Standard Edition 2
-  engine_version       = "19.0.0.0.ru-2023-07.rur-2023-07.r1" # Specify the version
-  instance_class       = "db.t3.medium"         # Instance type
-  identifier           = "my-oracle-db"         # Unique name for the RDS instance
-  username             = "admin"                # Master username
-  password             = "password123"          # Master password (change for security)
-  publicly_accessible  = true                   # Make publicly accessible if required
-  vpc_security_group_ids = [aws_security_group.rds_sg.id]
-  db_subnet_group_name = aws_db_subnet_group.rds_subnet.id
-  skip_final_snapshot  = true                   # Avoid snapshot on deletion
+# Output database endpoint
+output "db_endpoint" {
+  value = aws_db_instance.oracle_db.endpoint
 }
 
-# Create a DB subnet group
-resource "aws_db_subnet_group" "rds_subnet" {
-  name       = "rds-oracle-subnet"
-  subnet_ids = ["subnet-011b4dccabc332923","subnet-03944221db16b54cc" ]  # Replace with your subnet IDs
-  description = "RDS subnet group"
-}
-resource "aws_vpc" "main" {
-  cidr_block = "10.0.0.0/16"
-  enable_dns_support = true
-  enable_dns_hostnames = true
-
-  tags = {
-    Name = "main-vpc"
-  }
-}
-
-resource "aws_subnet" "public_a" {
-  vpc_id            = "vpc-03947b27961859338" # Replace with your VPC ID
-  cidr_block        = "172.31.0.0/16"
-  availability_zone = "ap-south-1a"
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.1.0/24"
-  availability_zone = "us-east-1a"
-  map_public_ip_on_launch = true
-
-  tags = {
-    Name = "public-a"
-  }
-}
-
-resource "aws_subnet" "public_b" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "10.0.2.0/24"
-  availability_zone = "us-east-1b"
-  map_public_ip_on_launch = true
-
-  tags = {
-    Name = "public-b"
-  }
+output "db_arn" {
+  value = aws_db_instance.oracle_db.arn
 }
