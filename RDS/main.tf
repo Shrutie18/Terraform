@@ -1,6 +1,6 @@
 # Specify the provider
 provider "aws" {
-  region = "ap-south-1"  # Change this to your preferred region
+  region = "us-east-1"  # Change this to your preferred region
 }
 
 # Create a security group for the RDS instance
@@ -44,16 +44,34 @@ resource "aws_db_subnet_group" "rds_subnet" {
   subnet_ids = ["subnet-011b4dccabc332923","subnet-03944221db16b54cc" ]  # Replace with your subnet IDs
   description = "RDS subnet group"
 }
+resource "aws_vpc" "main" {
+  cidr_block = "10.0.0.0/16"
+  enable_dns_support = true
+  enable_dns_hostnames = true
 
-# Define subnets (example, replace with your actual VPC setup)
+  tags = {
+    Name = "main-vpc"
+  }
+}
+
 resource "aws_subnet" "public_a" {
   vpc_id     = aws_vpc.main.id
-  cidr_block = "172.31.1.0/24"  # Adjusted to avoid conflict
+  cidr_block = "10.0.1.0/24"
   availability_zone = "us-east-1a"
+  map_public_ip_on_launch = true
+
+  tags = {
+    Name = "public-a"
+  }
 }
 
 resource "aws_subnet" "public_b" {
   vpc_id     = aws_vpc.main.id
-  cidr_block = "172.31.2.0/24"  # Adjusted to avoid conflict
+  cidr_block = "10.0.2.0/24"
   availability_zone = "us-east-1b"
+  map_public_ip_on_launch = true
+
+  tags = {
+    Name = "public-b"
+  }
 }
