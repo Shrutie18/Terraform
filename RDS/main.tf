@@ -41,7 +41,7 @@ resource "aws_db_instance" "oracle_rds" {
 # Create a DB subnet group
 resource "aws_db_subnet_group" "rds_subnet" {
   name       = "rds-oracle-subnet"
-  subnet_ids = [subnet-011b4dccabc332923,subnet-03944221db16b54cc ]  # Replace with your subnet IDs
+  subnet_ids = ["subnet-011b4dccabc332923","subnet-03944221db16b54cc" ]  # Replace with your subnet IDs
   description = "RDS subnet group"
 }
 
