@@ -1,3 +1,5 @@
-region        = "us-west-2"
-vpc_one_cidr  = "10.0.0.0/16"
-vpc_two_cidr  = "10.1.0.0/16"
+region = "us-east-1"
+t2s-vpc-dev-cidr = "20.0.0.0/16"
+t2s-vpc-stage-cidr = "75.0.0.0/16"
+subnet-dev-cidr = "20.0.15.0/24"
+subnet-stage-cidr = "75.0.35.0/24"
