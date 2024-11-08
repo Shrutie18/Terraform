@@ -27,8 +27,3 @@ variable "subnet-stage-cidr" {
   description = "The CIDR of Stage subnet"
 }
 
-# Inputting the Region Where We Deploy Our Infrastructure
-variable "region" {
-  type        = string
-  description = "Region"
-}
