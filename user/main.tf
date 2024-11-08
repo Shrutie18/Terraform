@@ -12,6 +12,7 @@ resource "aws_iam_group" "example_group" {
 }
 
 resource "aws_iam_group_membership" "group_membership" {
+  name  = "example-membership"  # Unique identifier for this group membership
   group = aws_iam_group.example_group.name
   users = [aws_iam_user.example_user.name]
 }
