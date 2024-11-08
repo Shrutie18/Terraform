@@ -1,15 +1,20 @@
-module "vpc_one" {
-  source             = "terraform-aws-modules/vpc/aws"
-  name               = "vpc-one"
-  cidr               = var.vpc_one_cidr
+# This file should only contain resource definitions, routes, etc.
+# No module calls for vpc_one or vpc_two here.
+
+resource "aws_vpc" "vpc_one" {
+  cidr_block = var.vpc_one_cidr
   enable_dns_support = true
   enable_dns_hostnames = true
+  tags = {
+    Name = "vpc-one"
+  }
 }
 
-module "vpc_two" {
-  source             = "terraform-aws-modules/vpc/aws"
-  name               = "vpc-two"
-  cidr               = var.vpc_two_cidr
+resource "aws_vpc" "vpc_two" {
+  cidr_block = var.vpc_two_cidr
   enable_dns_support = true
   enable_dns_hostnames = true
+  tags = {
+    Name = "vpc-two"
+  }
 }
