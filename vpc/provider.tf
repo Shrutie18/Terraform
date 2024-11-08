@@ -6,7 +6,7 @@ provider "aws" {
 # configure backend
 terraform {
   backend "s3" {
-    bucket         = "t2s-terraform"
+    bucket         = "cbzbucket1"
     key            = "peering.terraform.tfstate"
     region         = "us-east-1"
     dynamodb_table = "terraform-state-lock-dynamodb"
