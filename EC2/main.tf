@@ -85,8 +85,5 @@ resource "aws_route_table_association" "example_association" {
   route_table_id = aws_route_table.example_route_table.id
 }
 
-# Elastic IP for EC2 Instance
-resource "aws_eip" "example_eip" {
-  instance = aws_instance.example.id
-}
+
 
