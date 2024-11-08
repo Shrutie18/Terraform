@@ -13,3 +13,10 @@ output "main_route_table_id_vpc_two" {
 output "vpc_cidr_vpc_two" {
   value = module.vpc_two.cidr_block
 }
+output "cidr_block" {
+  value = aws_vpc.main.cidr_block
+}
+
+output "route_table_ids" {
+  value = aws_vpc.main.main_route_table_id
+}
