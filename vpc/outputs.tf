@@ -3,7 +3,7 @@ output "main_route_table_id_vpc_one" {
 }
 
 output "vpc_cidr_vpc_one" {
-  value = module.vpc_one.cidr_block
+  value = module.vpc_one.vpc_cidr
 }
 
 output "main_route_table_id_vpc_two" {
@@ -11,5 +11,5 @@ output "main_route_table_id_vpc_two" {
 }
 
 output "vpc_cidr_vpc_two" {
-  value = module.vpc_two.cidr_block
+  value = module.vpc_two.vpc_cidr
 }
