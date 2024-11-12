@@ -4,5 +4,5 @@ variable "key_name" {
 
 variable "private_key_path" {
   description = "Path to the private key file"
-  default     = "/home/ubuntu/.ssh"
+  default     = "/home/ubuntu/.ssh/id_rsa"
 }
