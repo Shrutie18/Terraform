@@ -74,14 +74,3 @@ resource "aws_route53_record" "www" {
   records = [aws_eip.static_ip.public_ip]
 }
 
-# Output the public IP of the EC2 instance
-output "instance_ip" {
-  description = "Public IP address of the web server"
-  value       = aws_eip.static_ip.public_ip
-}
-
-# Output the instance ID
-output "instance_id" {
-  description = "ID of the EC2 instance"
-  value       = aws_instance.web_server.id
-}
