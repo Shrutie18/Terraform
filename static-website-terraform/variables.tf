@@ -15,17 +15,17 @@ variable "instance_type" {
 # AMI ID for Ubuntu (replace with your preferred AMI)
 variable "ami_id" {
   description = "AMI ID to use for EC2 instance"
-  default     = "ami-0c55b159cbfafe1f0"  # Ubuntu AMI ID
+  default     = "ami-005fc0f236362e99f"  # Ubuntu AMI ID
 }
 
 # Key Name for EC2 access
 variable "key_name" {
   description = "SSH key name to access EC2 instance"
-  default     = "your-key-name"
+  default     = "shruti1"
 }
 
 # Domain name for Route 53
 variable "domain_name" {
   description = "Domain name for Route 53"
-  default     = "example.com"
+  default     = "shrutee.site"
 }
