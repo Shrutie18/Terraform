@@ -1,15 +1,21 @@
+# main.tf
+
+# AWS Provider Configuration
 provider "aws" {
-  region = "us-east-1" # Replace with your preferred region
+  region = var.region
 }
 
-# Elastic IP for Static IP
-resource "aws_eip" "web_eip" {
-  instance = aws_instance.web_instance.id
-}
-
-# Security Group allowing HTTP
+# Security Group: Allow HTTP and SSH traffic
 resource "aws_security_group" "web_sg" {
-  name   = "web-sg"
+  name        = "web_sg"
+  description = "Allow HTTP and SSH"
+  
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
   ingress {
     from_port   = 80
@@ -26,43 +32,56 @@ resource "aws_security_group" "web_sg" {
   }
 }
 
-# EC2 Instance for the Website
-resource "aws_instance" "web_instance" {
-  ami           = "ami-0866a3c8686eaeeba"  # Replace with your region-specific AMI
-  instance_type = "t2.micro"
+# EC2 Instance Configuration
+resource "aws_instance" "web_server" {
+  ami           = var.ami_id
+  instance_type = var.instance_type
   key_name      = var.key_name
+
   security_groups = [aws_security_group.web_sg.name]
 
+  # User data to install Apache web server and serve a simple page
+  user_data = <<-EOF
+              #!/bin/bash
+              apt-get update -y
+              apt-get install -y apache2
+              echo "Hello, world from EC2" > /var/www/html/index.html
+              systemctl enable apache2
+              systemctl start apache2
+              EOF
+
   tags = {
-    Name = "Static-Website-Host"
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "sudo apt update -y",
-      "sudo apt install nginx -y",
-      "echo '<h1>Welcome to My Static Website</h1>' | sudo tee /var/www/html/index.html"
-    ]
-
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      private_key = file(var.private_key_path)
-      host        = self.public_ip
-    }
+    Name = "StaticWebsiteInstance"
   }
 }
-# Create a Route 53 Hosted Zone
-resource "aws_route53_zone" "main" {
-  name = "shrutee.site" # Replace with your domain name
+
+# Elastic IP for static IP address
+resource "aws_eip" "static_ip" {
+  instance = aws_instance.web_server.id
 }
 
-# Create an A record pointing to the Elastic IP
+# Route 53 Hosted Zone
+resource "aws_route53_zone" "primary" {
+  name = var.domain_name
+}
+
+# Route 53 DNS Record to bind domain to EC2 instance's Elastic IP
 resource "aws_route53_record" "www" {
-  zone_id = aws_route53_zone.main.zone_id
-  name    = "www"
+  zone_id = aws_route53_zone.primary.id
+  name    = "www.${var.domain_name}"
   type    = "A"
   ttl     = 300
-  records = [aws_eip.web_eip.public_ip]
+  records = [aws_eip.static_ip.public_ip]
 }
 
+# Output the public IP of the EC2 instance
+output "instance_ip" {
+  description = "Public IP address of the web server"
+  value       = aws_eip.static_ip.public_ip
+}
+
+# Output the instance ID
+output "instance_id" {
+  description = "ID of the EC2 instance"
+  value       = aws_instance.web_server.id
+}
