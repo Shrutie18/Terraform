@@ -1,8 +1,3 @@
-# Specify the provider (AWS)
-provider "aws" {
-  region = var.this_aws_region
-}
-
 # Create an EC2 instance
 resource "aws_instance" "example" {
   ami           = var.this_ami 
