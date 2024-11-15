@@ -7,5 +7,5 @@ output "instance_id" {
 }
 
 output "instance_domain_name" {
-  value = aws_route53_photoprowess.photoprowess_dns_record.name
+  value = aws_route53_record.photoprowess_dns_record.name
 }
