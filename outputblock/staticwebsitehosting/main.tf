@@ -1,5 +1,5 @@
 # Create an EC2 instance
-resource "aws_instance" "example" {
+resource "aws_instance" "fregg_instance" {
   ami           = var.this_ami 
   instance_type = var.this_instance_type[0]              
   key_name      = var.this_key_pair          
