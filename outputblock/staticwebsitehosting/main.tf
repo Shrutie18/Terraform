@@ -9,16 +9,33 @@ resource "aws_instance" "photoprowess_instance" {
   tags = var.this_tag
   associate_public_ip_address = var.this_associate_public_ip
 
-   user_data = <<-EOF
+ user_data = <<-EOF
+ 
     #!/bin/bash
-    sudo apt install unzip -y curl
-    sudo apt install nginx -y
-    curl -O https://www.free-css.com/assets/files/free-css-templates/download/page1/photoprowess.zip
-    sudo unzip photoprowess.zip
+    # Update package lists and install necessary packages
+    sudo apt update
+    sudo apt install -y unzip curl nginx
+    
+    # Download the website template
+    curl -O https://www.free-css.com/assets/files/free-css-templates/download/page296/oxer.zip
+    
+    # Unzip the downloaded file
+    unzip oxer.zip -d oxer  # Extract into a new folder named 'oxer'
+    
+    # Clear the default Nginx web root
     sudo rm -rf /var/www/html/*
-    sudo mv photoprowess-html/* /var/www/html/
+    
+    # Move the extracted files to the web root
+    sudo mv oxer/* /var/www/html/
+    
+    # Ensure correct permissions
+    sudo chown -R www-data:www-data /var/www/html
+    sudo chmod -R 755 /var/www/html
+    
+    # Enable and start Nginx
     sudo systemctl enable nginx
     sudo systemctl start nginx
+
     EOF
 }  
 
