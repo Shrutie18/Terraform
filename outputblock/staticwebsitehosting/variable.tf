@@ -42,3 +42,15 @@ variable "this_security_group" {
     default = "sg-01c97071bf05b4c77"
     description = "This variable is for aws security group" 
 }
+
+variable "domain_name" {
+  description = "The domain name registered in Route 53"
+  type        = string
+  default     =  "shrutee.site"
+}
+
+variable "subdomain" {
+  description = "Subdomain for the fregg app"
+  type        = string
+  default     = "fregg.shrutee.site"  # Example subdomain (e.g., 'todo.example.com')
+}

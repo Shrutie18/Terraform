@@ -29,15 +29,17 @@ resource "aws_instance" "example" {
     EOF
 }  
 
-data "aws_route53_zone" "primary" {
-  zone_id = "Z0021523DMNZEF2TZSZE"
+# Route 53 Hosted Zone (if you don’t already have it)
+data "aws_route53_zone" "selected_zone" {
+  name         = var.domain_name
+  private_zone = false
 }
 
-#Create a record
-resource "aws_route53_record" "example" {
-  zone_id = data.aws_route53_zone.primary.zone_id
-  name    = "@"
+# Route 53 DNS Record to bind the domain to the EC2 instance's public IP
+resource "aws_route53_record" "boxer_dns_record" {
+  zone_id = data.aws_route53_zone.selected_zone.zone_id
+  name    = var.subdomain
   type    = "A"
-  ttl     =  300
-  records = [aws_instance.example.public_ip]
+  ttl     = 300
+  records = [aws_instance.boxer_instance.public_ip]
 }
