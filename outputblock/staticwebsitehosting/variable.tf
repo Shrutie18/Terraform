@@ -1,9 +1,3 @@
-variable this_aws_region {
-    type = string 
-    default = "us-east-1"
-    description = "This variable is for aws region"
-}
-
 variable "this_ami" {
     type = string
     default = "ami-012967cc5a8c9f891"
