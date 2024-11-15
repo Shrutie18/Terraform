@@ -36,7 +36,7 @@ data "aws_route53_zone" "primary" {
 #Create a record
 resource "aws_route53_record" "example" {
   zone_id = data.aws_route53_zone.primary.zone_id
-  name    = "www"
+  name    = "@"
   type    = "NS"
   ttl     =  900
   records = [aws_instance.example.public_ip]
