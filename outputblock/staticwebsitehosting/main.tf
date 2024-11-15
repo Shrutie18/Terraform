@@ -30,14 +30,15 @@ resource "aws_instance" "example" {
 }  
 
 data "aws_route53_zone" "primary" {
-  zone_id = "Z00194891ZZ68GH7NQX3B"
+  zone_id = "Z0021523DMNZEF2TZSZE
+"
 }
 
 #Create a record
 resource "aws_route53_record" "example" {
   zone_id = data.aws_route53_zone.primary.zone_id
   name    = "@"
-  type    = "NS"
-  ttl     =  900
+  type    = "A"
+  ttl     =  300
   records = [aws_instance.example.public_ip]
 }
