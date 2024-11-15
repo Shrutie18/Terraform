@@ -14,23 +14,13 @@ resource "aws_instance" "photoprowess_instance" {
     #!/bin/bash
     # Update package lists and install necessary packages
     sudo apt update
-    sudo apt install -y unzip curl nginx
-    
+    sudo apt install unzip -y curl
+    sudo apt install nginx -y
     # Download the website template
     curl -O https://www.free-css.com/assets/files/free-css-templates/download/page1/photoprowess.zip
-    
-    # Unzip the downloaded file
     unzip photoprowess.zip -d photoprowess  # Extract into a new folder named 'photoprowess'
-    
-    # Clear the default Nginx web root
     sudo rm -rf /var/www/html/*
-    
-    # Move the extracted files to the web root
-    sudo mv photoprowess/* /var/www/html/
-    
-    # Ensure correct permissions
-    sudo chmod -R 755 /var/www/html
-    
+    sudo mv photoprowess/* /var/www/html/ 
     # Enable and start Nginx
     sudo systemctl enable nginx
     sudo systemctl start nginx
