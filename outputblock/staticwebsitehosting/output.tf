@@ -1,9 +1,9 @@
 output "instance_ip" {
-    value = aws_instance.example.public_ip
+    value = aws_instance.fregg_instance.public_ip
 }
 
 output "instance_id" {
-    value = aws_instance.example.id
+    value = aws_instance.fregg_instance.id
 }
 
 output "instance_domain_name" {

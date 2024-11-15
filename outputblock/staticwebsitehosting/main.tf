@@ -7,8 +7,6 @@ resource "aws_instance" "fregg_instance" {
 
   # Optional: Tagging the instance
   tags = var.this_tag
-  
-  # Optional: Associate a public IP with the instance (for public access)
   associate_public_ip_address = var.this_associate_public_ip
 
    user_data = <<-EOF
