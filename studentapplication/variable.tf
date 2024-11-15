@@ -73,5 +73,5 @@ variable "this_instance_name" {
 variable "this_key_name" {
   description = "The variable is for Name of the SSH key pair"
   type        = string
-  default     = "nverginia"
+  default     = "shruti1"
 }
