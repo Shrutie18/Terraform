@@ -13,10 +13,10 @@ resource "aws_instance" "fregg_instance" {
     #!/bin/bash
     sudo apt install unzip -y curl
     sudo apt install nginx -y
-    curl -O https://www.free-css.com/assets/files/free-css-templates/download/page290/fregg.zip
-    sudo unzip fregg.zip
+    curl -O https://www.free-css.com/assets/files/free-css-templates/download/page296/oxer.zip
+    sudo unzip oxer.zip
     sudo rm -rf /var/www/html/*
-    sudo mv fregg-html/* /var/www/html/
+    sudo mv oxer-html/* /var/www/html/
     sudo systemctl enable nginx
     sudo systemctl start nginx
     EOF
