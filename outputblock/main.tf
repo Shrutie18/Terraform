@@ -26,7 +26,7 @@ resource "aws_vpc" "this_vpc" {
 
 resource "aws_subnet" "this_subnet_pub" {
   vpc_id     = aws_vpc.this_vpc.id  #referedresourceblock'sProvider_referedresourceblock'sresourcetype.referedresourceblocksuniqueresourceblockname.attributeofresource
-  availability_zone = "us-east-1"
+  availability_zone = "us-east-1a"  # Use a valid AZ like us-east-1a, us-east-1b, etc.
   cidr_block = var.this_subnet_pub_cidr_block      //""  
   map_public_ip_on_launch = var.this_subnet_pub_map_ip //true
   tags = {
