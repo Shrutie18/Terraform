@@ -1,6 +1,6 @@
 variable "this_ami" {
     type = string
-    default = "ami-012967cc5a8c9f891"
+    default = "ami-005fc0f236362e99f"
     description = "This variable is for aws ami"
 }
 
