@@ -46,5 +46,5 @@ variable "domain_name" {
 variable "subdomain" {
   description = "Subdomain for the fregg app"
   type        = string
-  default     = "fregg.shrutee.site"  # Example subdomain (e.g., 'todo.example.com')
+  default     = "photoprowess.shrutee.site"  # Example subdomain (e.g., 'todo.example.com')
 }
