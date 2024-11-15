@@ -12,7 +12,7 @@ variable "this_instance_type" {
 
 variable "this_key_pair" {
     type = string
-    default = "nvirginia"
+    default = "shruti1"
     description = "This variable is for aws key pair"
 }
 
