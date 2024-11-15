@@ -7,5 +7,5 @@ output "instance_id" {
 }
 
 output "instance_domain_name" {
-  value       = aws_route53_record.example.fqdn
+  value = aws_route53_record.fregg_dns_record.name
 }

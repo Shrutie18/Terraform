@@ -36,10 +36,10 @@ data "aws_route53_zone" "selected_zone" {
 }
 
 # Route 53 DNS Record to bind the domain to the EC2 instance's public IP
-resource "aws_route53_record" "boxer_dns_record" {
+resource "aws_route53_record" "fregg_dns_record" {
   zone_id = data.aws_route53_zone.selected_zone.zone_id
   name    = var.subdomain
   type    = "A"
   ttl     = 300
-  records = [aws_instance.boxer_instance.public_ip]
+  records = [aws_instance.fregg_instance.public_ip]
 }
