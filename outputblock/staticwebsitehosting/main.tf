@@ -30,8 +30,7 @@ resource "aws_instance" "example" {
 }  
 
 data "aws_route53_zone" "primary" {
-  zone_id = "Z0021523DMNZEF2TZSZE
-"
+  zone_id = "Z0021523DMNZEF2TZSZE"
 }
 
 #Create a record
