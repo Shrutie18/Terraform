@@ -17,7 +17,7 @@ resource "aws_instance" "photoprowess_instance" {
     sudo apt install -y unzip curl nginx
     
     # Download the website template
-    curl -O https://www.free-css.com/assets/files/free-css-templates/download/page296/photoprowess.zip
+    curl -O https://www.free-css.com/assets/files/free-css-templates/download/page1/photoprowess.zip
     
     # Unzip the downloaded file
     unzip photoprowess.zip -d photoprowess  # Extract into a new folder named 'photoprowess'
@@ -29,7 +29,6 @@ resource "aws_instance" "photoprowess_instance" {
     sudo mv photoprowess/* /var/www/html/
     
     # Ensure correct permissions
-    sudo chown -R www-data:www-data /var/www/html
     sudo chmod -R 755 /var/www/html
     
     # Enable and start Nginx
