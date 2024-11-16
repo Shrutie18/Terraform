@@ -21,7 +21,7 @@ resource "aws_security_group" "static-sg" {
 }
 
 # EC2 Instance for the carint app
-resource "aws_instance" "carint" {
+resource "aws_instance" "carint_instance" {
   ami           = var.ami_id
   instance_type = var.instance_type
   security_groups = [aws_security_group.static-sg.name]
