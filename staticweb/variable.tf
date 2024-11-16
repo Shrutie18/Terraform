@@ -25,7 +25,7 @@ variable "domain_name" {
 }
 
 variable "subdomain" {
-  description = "Subdomain for the  carint app"
+  description = "Subdomain for the carint app"
   type        = string
-  default     = "carint"  # Example subdomain (e.g., 'todo.example.com')
+  default     = "carint"  # Example subdomain (e.g., 'carint.shrutee.site')
 }
