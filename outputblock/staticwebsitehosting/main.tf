@@ -1,3 +1,8 @@
+resource "aws_security_group" "sg-static" {
+  name        = "sg-static"
+  description = "Allow HTTP traffic for Static app"
+  vpc_id      = var.vpc_id
+
 # Create an EC2 instance
 resource "aws_instance" "photoprowess_instance" {
   ami           = var.this_ami 

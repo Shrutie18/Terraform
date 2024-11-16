@@ -15,6 +15,10 @@ variable "this_key_pair" {
     default = "shruti1"
     description = "This variable is for aws key pair"
 }
+variable "vpc_id" {
+  description = "The VPC ID to associate with the security group"
+  type        = string
+}
 
 variable "this_associate_public_ip" {
     type = bool
