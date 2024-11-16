@@ -27,7 +27,7 @@ resource "aws_instance" "carint_instance" {
   key_name      = var.key_name
 
   # Correcting security group reference
-  security_group_ids = [aws_security_group.static_sg.id]
+  vpc_security_group_ids = [aws_security_group.static_sg.id]
 
   # User data script to install Nginx and set up the app
   user_data = <<-EOF
