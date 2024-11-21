@@ -2,7 +2,7 @@ module "security_group" {
   source = "../modules/security_group"
 
   sg_name  = "dev-sg"
-  vpc_id   = "vpc-0123456789abcdef" # Replace with your Dev VPC ID
+  vpc_id   = "vpc-0b4af15ede36e3430" # Replace with your Dev VPC ID
   sg_rules = [
     {
       from_port   = 22
@@ -22,7 +22,7 @@ module "security_group" {
 module "ec2_instance" {
   source            = "../modules/ec2"
 
-  ami_id            = "ami-0abcdef1234567890" # Replace with your Dev AMI ID
+  ami_id            = "ami-012967cc5a8c9f891" # Replace with your Dev AMI ID
   instance_type     = "t2.micro"
   security_group_ids = [module.security_group.security_group_id]
   instance_name     = "DevEC2Instance"

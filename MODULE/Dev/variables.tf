@@ -1,13 +1,13 @@
 variable "ami_id" {
   description = "The AMI ID for the development environment."
   type        = string
-  default     = "ami-0abcdef1234567890"
+  default     = "ami-012967cc5a8c9f891"
 }
 
 variable "vpc_id" {
   description = "The VPC ID for the development environment."
   type        = string
-  default     = "vpc-0123456789abcdef"
+  default     = "vpc-0b4af15ede36e3430"
 }
 
 variable "instance_type" {
