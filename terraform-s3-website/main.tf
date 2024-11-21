@@ -16,7 +16,7 @@ resource "aws_s3_bucket_website_configuration" "website_config" {
   tags = {
     Name = "MyStaticWebsite"
   }
-}
+
 
 resource "aws_s3_object" "website_index" {
   bucket = aws_s3_bucket.website.bucket
