@@ -56,7 +56,3 @@ resource "aws_s3_bucket_object" "website_error" {
   EOF
 }
 
-output "website_url" {
-  description = "The URL of the static website"
-  value       = aws_s3_bucket.website.website_endpoint
-}
