@@ -9,32 +9,35 @@ resource "random_id" "unique_suffix" {
 resource "aws_s3_bucket" "website" {
   bucket = "my-unique-website-bucket-${random_id.unique_suffix.hex}"
 
+  website {
+    index_document = "index.html"
+    error_document = "error.html"
+  }
+
   tags = {
     Name = "MyStaticWebsite"
   }
 }
 
-resource "aws_s3_bucket_acl" "website_acl" {
-  bucket = aws_s3_bucket.website.id
-  acl    = "public-read"
-}
-
-resource "aws_s3_bucket_website_configuration" "website_config" {
+resource "aws_s3_bucket_policy" "website_policy" {
   bucket = aws_s3_bucket.website.id
 
-  index_document {
-    suffix = "index.html"
-  }
-
-  error_document {
-    key = "error.html"
-  }
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect    = "Allow",
+        Principal = "*",
+        Action    = "s3:GetObject",
+        Resource  = "${aws_s3_bucket.website.arn}/*"
+      }
+    ]
+  })
 }
 
 resource "aws_s3_object" "website_index" {
   bucket = aws_s3_bucket.website.id
   key    = "index.html"
-  acl    = "public-read"
   content = <<EOF
   <!DOCTYPE html>
   <html lang="en">
@@ -54,7 +57,6 @@ resource "aws_s3_object" "website_index" {
 resource "aws_s3_object" "website_error" {
   bucket = aws_s3_bucket.website.id
   key    = "error.html"
-  acl    = "public-read"
   content = <<EOF
   <!DOCTYPE html>
   <html lang="en">
