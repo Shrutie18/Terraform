@@ -2,27 +2,37 @@ provider "aws" {
   region = var.region
 }
 
-# S3 Bucket for hosting the static website
+# S3 Bucket
 resource "aws_s3_bucket" "website" {
   bucket = var.bucket_name
-  acl    = "public-read"
 
-  # Tags block is valid here
   tags = {
     Name = "MyStaticWebsite"
   }
 }
 
+# S3 Bucket ACL
+resource "aws_s3_bucket_acl" "website_acl" {
+  bucket = aws_s3_bucket.website.id
+  acl    = "public-read"
+}
+
 # S3 Bucket Website Configuration
 resource "aws_s3_bucket_website_configuration" "website_config" {
-  bucket         = aws_s3_bucket.website.bucket
-  index_document = "index.html"
-  error_document = "error.html"
+  bucket = aws_s3_bucket.website.id
+
+  index_document {
+    suffix = "index.html"
+  }
+
+  error_document {
+    key = "error.html"
+  }
 }
 
 # S3 Object for index.html
 resource "aws_s3_object" "website_index" {
-  bucket = aws_s3_bucket.website.bucket
+  bucket = aws_s3_bucket.website.id
   key    = "index.html"
   acl    = "public-read"
   content = <<EOF
@@ -43,7 +53,7 @@ resource "aws_s3_object" "website_index" {
 
 # S3 Object for error.html
 resource "aws_s3_object" "website_error" {
-  bucket = aws_s3_bucket.website.bucket
+  bucket = aws_s3_bucket.website.id
   key    = "error.html"
   acl    = "public-read"
   content = <<EOF
