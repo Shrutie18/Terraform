@@ -1,7 +1,7 @@
 provider "aws" {
       region = "us-east-1"
       profile = "shruti"
-      shared_credentials_files = ["/home/cloudshell-user/.aws/credentials"]
+      shared_credentials_files = ["/home/shruti/.aws/credentials"]
     
 }
 
@@ -13,7 +13,7 @@ terraform {
         dynamodb_table = "cbz38"
         region = "us-east-1"
         profile = "shruti"
-        shared_credentials_files = ["/home/cloushell-user/.aws/credentials"]
+        shared_credentials_files = ["/home/shruti/.aws/credentials"]
     }
 }
 
