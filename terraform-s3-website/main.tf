@@ -1,22 +1,24 @@
 provider "aws" {
   region = var.region
 }
-
 resource "aws_s3_bucket" "website" {
   bucket = var.bucket_name
   acl    = "public-read"
+}
 
-  website {
-    index_document = "index.html"
-    error_document = "error.html"
-  }
+resource "aws_s3_bucket_website_configuration" "website_config" {
+  bucket = aws_s3_bucket.website.bucket
+  index_document = "index.html"
+  error_document = "error.html"
+}
+
 
   tags = {
     Name = "MyStaticWebsite"
   }
 }
 
-resource "aws_s3_bucket_object" "website_index" {
+resource "aws_s3_object" "website_index" {
   bucket = aws_s3_bucket.website.bucket
   key    = "index.html"
   acl    = "public-read"
