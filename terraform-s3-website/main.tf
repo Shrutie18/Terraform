@@ -2,22 +2,23 @@ provider "aws" {
   region = var.region
 }
 
-# S3 Bucket
+resource "random_id" "unique_suffix" {
+  byte_length = 4
+}
+
 resource "aws_s3_bucket" "website" {
-  bucket = var.bucket_name
+  bucket = "my-unique-website-bucket-${random_id.unique_suffix.hex}"
 
   tags = {
     Name = "MyStaticWebsite"
   }
 }
 
-# S3 Bucket ACL
 resource "aws_s3_bucket_acl" "website_acl" {
   bucket = aws_s3_bucket.website.id
   acl    = "public-read"
 }
 
-# S3 Bucket Website Configuration
 resource "aws_s3_bucket_website_configuration" "website_config" {
   bucket = aws_s3_bucket.website.id
 
@@ -30,7 +31,6 @@ resource "aws_s3_bucket_website_configuration" "website_config" {
   }
 }
 
-# S3 Object for index.html
 resource "aws_s3_object" "website_index" {
   bucket = aws_s3_bucket.website.id
   key    = "index.html"
@@ -51,7 +51,6 @@ resource "aws_s3_object" "website_index" {
   EOF
 }
 
-# S3 Object for error.html
 resource "aws_s3_object" "website_error" {
   bucket = aws_s3_bucket.website.id
   key    = "error.html"
