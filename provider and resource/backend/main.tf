@@ -8,9 +8,9 @@ provider "aws" {
 #LockID
 terraform {
     backend "s3" {
-        bucket = "Cloudblitz123"
+        bucket = "cloudblitz123"
         key = "terraform.tfstate"
-        dynamodb_table = "cbz38"
+        dynamodb_table = "table1"
         region = "us-east-1"
         profile = "shruti"
         shared_credentials_files = ["/home/shruti/.aws/credentials"]
