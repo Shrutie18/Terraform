@@ -17,6 +17,14 @@ resource "aws_s3_bucket" "website" {
   tags = {
     Name = "MyStaticWebsite"
   }
+
+  # Disable Block Public Access settings
+  public_access_block {
+    block_public_acls       = false
+    block_public_policy     = false
+    restrict_public_buckets = false
+    ignore_public_acls      = false
+  }
 }
 
 resource "aws_s3_bucket_policy" "website_policy" {
