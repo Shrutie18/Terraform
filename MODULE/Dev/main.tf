@@ -1,5 +1,5 @@
 module "security_group" {
-  source = "../modules/security_group"
+  source = "/home/cloudshell-user/Terraform/MODULE/module/security-group"
 
   sg_name  = "dev-sg"
   vpc_id   = "vpc-0b4af15ede36e3430" # Replace with your Dev VPC ID
@@ -20,7 +20,7 @@ module "security_group" {
 }
 
 module "ec2_instance" {
-  source            = "../modules/ec2"
+  source            = "/home/cloudshell-user/Terraform/MODULE/module/Ec2"
 
   ami_id            = "ami-012967cc5a8c9f891" # Replace with your Dev AMI ID
   instance_type     = "t2.micro"
