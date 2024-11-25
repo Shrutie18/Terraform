@@ -20,7 +20,7 @@ required_providers {
   }
 
 backend "s3" {
-	bucket = "cbzbucketshruti" 
+	bucket = "cbzshruti" 
 	key = "terraform.tfstate"
 	region = "us-east-1"
   profile = "shruti"
