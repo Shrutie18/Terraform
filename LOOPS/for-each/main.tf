@@ -12,7 +12,7 @@ resource "aws_instance" "this_aws_instance" {
     ami = each.value
     #vpc_security_group_ids = ["sg-01c97071bf05b4c77"]
     #key_name = "shruti1"
-    instance_type = "t3.micro"    
+    instance_type = "t2.micro"    
 }   
 
 resource "aws_iam_user" "main_user"{
@@ -28,7 +28,7 @@ variable "main_user_name" {
 
 variable "imageid" {
     type = list(string)
-    default = ["ami-0866a3c8686eaeeba","ami-05b1a50d6798f63cb","ami-064519b8c76274859"]
+    default = ["ami-0453ec754f44f9a4a","ami-0166fe664262f664c","ami-0866a3c8686eaeeba"]
 
 }
 
