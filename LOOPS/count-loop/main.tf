@@ -1,5 +1,5 @@
 provider "aws" {
-   profile = "swapnil"
+   profile = "shruti"
     default_tags {
                 tags = {
                     name = "aws"
@@ -19,5 +19,5 @@ resource "aws_iam_user" "this_aws_iam_user_2" {
 
 
 variable "users_list" {
-    default = ["raju" , "shyam" , "baburao"]
+    default = ["chutki" , "raju" , "bheem"]
 }   
