@@ -1,11 +1,3 @@
-
-provider "aws" {
-     
-region = "us-east-1"
-     profile = "shruti"
-}
-
-
 resource "aws_instance" "this_aws_instance" {
   ami = "ami-0453ec754f44f9a4a"
   vpc_security_group_ids = ["sg-01c97071bf05b4c77"]
