@@ -9,7 +9,7 @@ resource "aws_instance" "this_aws_instance" {
 
 variable aws_ami {
        type = list(string)
-       default = ["ami-012967cc5a8c9f891", "ami-0866a3c8686eaeeba", "ami-0166fe664262f664c" , "ami-0583d8c7a9c35822c" ]
+       default = ["ami-0453ec754f44f9a4a", "ami-0583d8c7a9c35822c", "ami-05b1a50d6798f63cb"]
 }
 
 
