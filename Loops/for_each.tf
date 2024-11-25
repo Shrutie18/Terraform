@@ -4,5 +4,5 @@ resource "aws_iam_user" "main_user1" {
 }
 
  variable "aws_user_name-1" {
-  default = ["awslinux", "Redhatlinux", "windows"]
+  default = ["alinux", "Redhatlinux", "windows"]
 }
