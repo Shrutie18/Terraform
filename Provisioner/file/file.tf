@@ -1,13 +1,13 @@
 provider "aws" {
-    region = "us-west-1"
-     profile = "configs"
+    region = "us-east-1"
+     profile = "shruti"
 }     
 
 
 resource "aws_instance" "this_aws_instance" {
-    ami = "ami-0da424eb883458071"
-    vpc_security_group_ids = ["sg-0063c7dcb89f09c9b"]
-    key_name = "navidali"
+    ami = "ami-0866a3c8686eaeeba"
+    vpc_security_group_ids = ["sg-01c97071bf05b4c77"]
+    key_name = "shruti1"
     instance_type = "t2.micro"
      
      provisioner "file" {
@@ -16,7 +16,7 @@ resource "aws_instance" "this_aws_instance" {
      connection {
     type     = "ssh"
     user     = "ubuntu"
-    private_key = file("${path.module}/navidali.pem") #navidlai privateip
+    private_key = file("${path.module}/shruti1.pem") #navidlai privateip
     host     = "${self.public_ip}"
   }
   }
