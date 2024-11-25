@@ -7,9 +7,9 @@ region = "us-east-1"
 
 
 resource "aws_instance" "this_aws_instance" {
-  ami = "ami-0614680123427b75e"
-  vpc_security_group_ids = ["sg-0a915226a5d9bb382"]
-  key_name = "mum-key"
+  ami = "ami-0453ec754f44f9a4a"
+  vpc_security_group_ids = ["sg-01c97071bf05b4c77"]
+  key_name = "shruti1"
   instance_type = "t2.micro"
 
   provisioner "remote-exec" {
@@ -22,7 +22,7 @@ resource "aws_instance" "this_aws_instance" {
     connection {
       type        = "ssh"
       user        = "ec2-user" # Default user for ec2-user AMIs; replace if needed
-      private_key = file("${path.module}/id_rsa.pem")
+      private_key = file("${path.module}/shruti1.pem")
       host        = self.public_ip
     }
   }
@@ -38,7 +38,7 @@ resource "aws_instance" "this_aws_instance" {
   connection {
     type        = "ssh"
     user        = "ec2-user"
-    private_key = file("path/to/id_rsa.pem")
+    private_key = file("path/to/shruti1.pem")
     host        = self.public_ip
   }
 }*/
